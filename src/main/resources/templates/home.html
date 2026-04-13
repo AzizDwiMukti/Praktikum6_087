@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1 th:text="${judulWeb}">MY Website</h1>
+        <p class="subtitle">Selamat datang di aplikasi</p>
+        <p><b>Pemilik website:</b> <span th:text="${namaMahasiswa}">Nama Kamu</span></p>
+
+        <div class="menu">
+            <a th:href="@{/form}" class="btn-link">Input Data Mahasiswa</a>
+            <a th:href="@{/logout}" class="btn-link danger">Logout</a>
+        </div>
+
+        <h3>Data Mahasiswa</h3>
+
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>NIM</th>
+                <th>Jenis Kelamin</th>
+                <th>Alamat</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(listUser)}">
+                <td colspan="5" style="text-align:center;">Belum ada data</td>
+            </tr>
+
+            <tr th:each="user, iterStat : ${listUser}">
+                <td th:text="${iterStat.count}"></td>
+                <td th:text="${user.nama}"></td>
+                <td th:text="${user.nim}"></td>
+                <td th:text="${user.jenisKelamin}"></td>
+                <td th:text="${user.alamat}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

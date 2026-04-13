@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h2>Login Page</h2>
+
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+        <form th:action="@{/login}" method="post">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Masukkan username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Masukkan password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="note">Gunakan username: <b>admin</b> dan password: <b>NIM kamu</b></p>
+    </div>
+</div>
+</body>
+</html>
