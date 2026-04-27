@@ -2,47 +2,75 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Praktikum 6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="container">
-    <div class="card">
-        <h1 th:text="${judulWeb}">MY Website</h1>
-        <p class="subtitle">Selamat datang di aplikasi</p>
-        <p><b>Pemilik website:</b> <span th:text="${namaMahasiswa}">Nama Kamu</span></p>
+    <div class="card home-card">
+        <h2 th:text="${judulWeb}">Dashboard</h2>
+        <p class="subtitle">Selamat datang kembali di sistem informasi mahasiswa</p>
 
-        <div class="menu">
-            <a th:href="@{/form}" class="btn-link">Input Data Mahasiswa</a>
-            <a th:href="@{/logout}" class="btn-link danger">Logout</a>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <label>Pemilik Website</label>
+                <div style="font-weight: 600; color: var(--primary-color);" th:text="${namaMahasiswa}">Azis Dwi Mukti</div>
+            </div>
+            <div class="stat-item">
+                <label>Total Mahasiswa</label>
+                <div style="font-weight: 600; color: var(--primary-color);" th:text="${#lists.size(listUser)}">0</div>
+            </div>
         </div>
 
-        <h3>Data Mahasiswa</h3>
+        <!-- Restoring Photo and Text -->
+        <div style="margin: 2rem 0; text-align: center;">
+            <img th:src="@{/images/WhatsApp Image 2026-04-27 at 10.10.07.jpeg}" alt="Profile Photo" style="max-width: 300px; height: auto; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+            <div style="margin-top: 1rem; font-weight: 700; font-size: 1.25rem; color: var(--text-main);">
+                Cinta Bukan Tujuan, Tapi Ujian Kehidupan
+            </div>
+        </div>
 
-        <table>
-            <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>NIM</th>
-                <th>Jenis Kelamin</th>
-                <th>Alamat</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${#lists.isEmpty(listUser)}">
-                <td colspan="5" style="text-align:center;">Belum ada data</td>
-            </tr>
+        <div class="table-container">
+            <h3>Daftar Mahasiswa Terdaftar</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Gender</th>
+                    <th>Alamat</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${#lists.isEmpty(listUser)}">
+                    <td colspan="5" style="text-align:center; padding: 2rem; color: var(--text-muted);">
+                        Belum ada data mahasiswa. Silakan tambah data baru.
+                    </td>
+                </tr>
+                <tr th:each="user, iterStat : ${listUser}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td style="font-weight: 500;" th:text="${user.nama}"></td>
+                    <td th:text="${user.nim}"></td>
+                    <td th:text="${user.jenisKelamin}"></td>
+                    <td th:text="${user.alamat}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <tr th:each="user, iterStat : ${listUser}">
-                <td th:text="${iterStat.count}"></td>
-                <td th:text="${user.nama}"></td>
-                <td th:text="${user.nim}"></td>
-                <td th:text="${user.jenisKelamin}"></td>
-                <td th:text="${user.alamat}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="btn-container">
+            <a th:href="@{/form}" style="text-decoration: none; flex: 1;">
+                <button style="width: 100%;">+ Tambah Mahasiswa</button>
+            </a>
+            <a th:href="@{/logout}" style="text-decoration: none; flex: 1;">
+                <button class="btn-secondary" style="width: 100%;">Keluar</button>
+            </a>
+        </div>
     </div>
 </div>
 </body>

@@ -2,27 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Praktikum 6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="container">
     <div class="card">
-        <h2>Login Page</h2>
+        <h2>Selamat Datang</h2>
+        <p class="subtitle">Silakan login untuk mengakses dashboard Anda</p>
 
         <div th:if="${error}" class="error-message" th:text="${error}"></div>
 
         <form th:action="@{/login}" method="post">
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Masukkan username" required>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Masukkan username" required>
+            </div>
 
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Masukkan password" required>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Masukkan password" required>
+            </div>
 
-            <button type="submit">Login</button>
+            <button type="submit">Masuk ke Sistem</button>
         </form>
 
-        <p class="note">Gunakan username: <b>admin</b> dan password: <b>NIM kamu</b></p>
+        <p class="note">Default login: <b>admin</b> / <b>087</b></p>
     </div>
 </div>
 </body>

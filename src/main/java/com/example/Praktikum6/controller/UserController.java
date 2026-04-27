@@ -17,9 +17,9 @@ public class UserController {
 
     // GANTI DENGAN DATA KAMU
     private final String USERNAME = "admin";
-    private final String PASSWORD = "NIM_KAMU"; // contoh: 20210140019
-    private final String JUDUL_WEB = "MY Website NIM_KAMU";
-    private final String NAMA_MAHASISWA = "NAMA_KAMU";
+    private final String PASSWORD = "087"; // contoh: 20210140019
+    private final String JUDUL_WEB = "WEBSITE WONG TULUS";
+    private final String NAMA_MAHASISWA = "Azis Dwi Mukti";
 
     // Data temporary, tidak disimpan ke database
     private final List<User> dataMahasiswa = new ArrayList<>();
